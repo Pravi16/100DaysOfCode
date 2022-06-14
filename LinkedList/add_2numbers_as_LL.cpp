@@ -60,7 +60,7 @@ void compute(node *a,node *b)
 int main()
 {
     int n;
-    cin>>n;     //assume that both list are of same size
+    cin>>n;     //assume that both the list are of same size
     node *a=NULL,*b=NULL;
     while(n--)
     {
