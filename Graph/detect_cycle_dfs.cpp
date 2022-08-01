@@ -17,7 +17,7 @@ class Solution {
         return false;
     }
     bool isCycle(int V, vector<int> adj[]) {
-        vector<int>vis(V0); // starting with 0
+        vector<int>vis(V); // starting with 0
         for(int i=0;i<V;i++)
         {
             if(!vis[i])
