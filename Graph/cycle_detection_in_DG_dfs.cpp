@@ -1,30 +1,29 @@
 class Solution{
     public:
+    bool compute(int i,vector<int>adj[],vector<int>&vis,vector<int>&dfsVis)
+    {
+        vis[i]=dfsVis[i]=1;
+        for(auto it:adj[i])
+        {
+            if(!vis[it])
+            {
+                if(compute(it,adj,vis,dfsVis)) return true;
+            }
+            else if(dfsVis[it]) return true;
+        }
+        dfsVis[i]=0;
+        return false;
+    }
     bool isCyclic(vector<int>adj[],int n) 
     {
-        int cnt=0;
-        queue<int>q;
-        vector<int>deg(n);
+        vector<int>vis(n),dfsVis(n);
         for(int i=0;i<n;i++)
         {
-            for(auto it:adj[i]) deg[it]++;
-        }
-        for(int i=0;i<n;i++)
-        {
-            if(!deg[i]) q.push(i);
-        }
-        while(!q.empty())
-        {
-            int curNode=q.front();
-            q.pop();
-            cnt++;
-            for(auto it:adj[curNode])
+            if(!vis[i]) 
             {
-                deg[it]--;
-                if(!deg[it]) q.push(it);
+                if(compute(i,adj,vis,dfsVis)) return true;
             }
         }
-        if(cnt==n) return false;
-        return true;
+        return false;
     }
 }
